@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const GRAVITY = -0.05;
+const GRAVITY = -0.02;
 
 function getAngle(dy, dx) {
   return Math.atan2(dy, dx); // range (-PI, PI]
@@ -21,7 +21,7 @@ const processBall = (ball, otherBalls) => {
     } else {
       // Add Gravity
       newY += speedY;
-        newSpeedY += GRAVITY;
+      newSpeedY += GRAVITY;
     }
   } else {
     // Detect Hit Bottom
@@ -37,6 +37,13 @@ const processBall = (ball, otherBalls) => {
   } else if (newX > 100 - r * 2) {
     newX = 100 - r * 2;
     newSpeedX *= -bounce;
+  } else if (
+    newSpeedX > -0.5 &&
+    newSpeedX < 0.5 &&
+    newX < 0.5 &&
+    newX > 100 - r * 2 + 0.5
+  ) {
+    newSpeedY = 0;
   }
 
   // Friction
