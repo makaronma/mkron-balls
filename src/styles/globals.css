@@ -9,6 +9,8 @@ body {
 body {
   display: grid;
   place-content: center;
+  place-items: center;
+  min-height: 100vh;
 }
 
 a {
@@ -22,7 +24,8 @@ a {
 
 .ballContainer {
   background-color: white;
-  width: 600px;
+  width:80vw;
+  max-width: 600px;
   aspect-ratio: 1;
   position: relative;
 }
