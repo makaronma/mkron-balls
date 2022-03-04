@@ -1,10 +1,6 @@
 import { useEffect } from "react";
 
-const GRAVITY = -0.02;
-
-function getAngle(dy, dx) {
-  return Math.atan2(dy, dx); // range (-PI, PI]
-}
+const GRAVITY = -0.05;
 
 const processBall = (ball, otherBalls) => {
   const { x, y, r, speedX, speedY, friction, bounce } = ball;
@@ -65,7 +61,7 @@ const processBall = (ball, otherBalls) => {
     const distance = Math.hypot(dx, dy);
     // Check overlap
     const overlap = r * 2 - distance;
-    if (overlap > 0) {
+    if (overlap >= 0) {
       // Reset position caused by overlapping
       const overlapPrecent = overlap / r / 2 / 2;
       newY -= dy * overlapPrecent;
