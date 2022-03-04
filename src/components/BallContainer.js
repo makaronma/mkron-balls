@@ -20,9 +20,9 @@ const BallContainer = () => {
       const newBall = {
         id: i,
         r: 5,
-        x: 3 * i,
-        y: getRanNum(90,200),
-        speedX: getRanNum(-3,3),
+        x: i,
+        y: getRanNum(90, 200),
+        speedX: getRanNum(-3, 3),
         speedY: 0,
         friction: 0.008,
         bounce: 0.4,
