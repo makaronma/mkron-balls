@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const GRAVITY = -0.05;
+const GRAVITY = -0.03;
 
 const processBall = (ball, otherBalls) => {
   const { x, y, r, speedX, speedY, friction, bounce } = ball;
@@ -8,6 +8,29 @@ const processBall = (ball, otherBalls) => {
     newY = y,
     newSpeedX = speedX,
     newSpeedY = speedY;
+
+  // Collision with balls
+  // Overlap Detection
+  const center = { x: x + r, y: y + r };
+  otherBalls.forEach((ballB) => {
+    const ballBCenter = { x: ballB.x + r, y: ballB.y + r };
+    const dy = ballBCenter.y - center.y;
+    const dx = ballBCenter.x - center.x;
+    const distance = Math.hypot(dx, dy);
+    // Check overlap
+    const overlap = r * 2 - distance;
+    if (overlap >= 0) {
+      // Reset position caused by overlapping
+      const overlapPrecent = overlap / r / 2 / 2;
+      newY -= dy * overlapPrecent;
+      newX -= dx * overlapPrecent;
+
+      const halfPercent = overlapPrecent * 0.5;
+
+      newSpeedX -= dx * halfPercent;
+      newSpeedY -= dy * halfPercent;
+    }
+  });
 
   // Vertical
   if (newY >= 0) {
@@ -50,29 +73,6 @@ const processBall = (ball, otherBalls) => {
       newSpeedX = 0;
     }
   }
-
-  // Collision with balls
-  // Overlap Detection
-  const center = { x: x + r, y: y + r };
-  otherBalls.forEach((ballB) => {
-    const ballBCenter = { x: ballB.x + r, y: ballB.y + r };
-    const dy = ballBCenter.y - center.y;
-    const dx = ballBCenter.x - center.x;
-    const distance = Math.hypot(dx, dy);
-    // Check overlap
-    const overlap = r * 2 - distance;
-    if (overlap >= 0) {
-      // Reset position caused by overlapping
-      const overlapPrecent = overlap / r / 2 / 2;
-      newY -= dy * overlapPrecent;
-      newX -= dx * overlapPrecent;
-
-      const halfPercent = overlapPrecent * 0.5;
-
-      newSpeedX -= dx * halfPercent;
-      newSpeedY -= dy * halfPercent;
-    }
-  });
 
   const newBall = {
     ...ball,

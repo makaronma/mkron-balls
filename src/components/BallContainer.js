@@ -21,11 +21,11 @@ const BallContainer = () => {
         id: i,
         r: 5,
         x: i,
-        y: getRanNum(90, 200),
+        y: getRanNum(90, 3000),
         speedX: getRanNum(-3, 3),
         speedY: 0,
         friction: 0.008,
-        bounce: 0.4,
+        bounce: getRanNum(0.4,0.6),
         color: ranColor,
       };
       newBalls.push(newBall);
