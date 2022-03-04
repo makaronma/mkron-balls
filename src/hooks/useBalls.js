@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const GRAVITY = -0.3;
+const GRAVITY = -0.05;
 
 function getAngle(dy, dx) {
   return Math.atan2(dy, dx); // range (-PI, PI]
@@ -17,7 +17,6 @@ const processBall = (ball, otherBalls) => {
   if (newY >= 0) {
     // Check whether ball is stable
     if (newSpeedY > -0.5 && newSpeedY < 0.5 && newY < 0.5) {
-      console.log(newY);
       newSpeedY = 0;
     } else {
       // Add Gravity
@@ -93,7 +92,6 @@ const useBalls = (setBalls) => {
             pBalls.filter((b) => b.id !== ball.id)
           );
         });
-        console.log(newBalls);
         return newBalls;
       });
     }, 30);

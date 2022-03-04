@@ -28,6 +28,7 @@ a {
   max-width: 600px;
   aspect-ratio: 1;
   position: relative;
+  overflow: hidden;
 }
 .ball {
   position: absolute;
