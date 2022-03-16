@@ -1,2 +1,2 @@
 ## Live Demo
-https://mkron-balls-phbjfnpos-makaronma.vercel.app/
+https://mkron-balls.vercel.app/
